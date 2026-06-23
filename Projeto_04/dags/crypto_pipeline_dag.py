@@ -20,7 +20,7 @@ default_args = {
 with DAG(
     dag_id="crypto_pipeline",
     start_date=datetime(2024, 6, 1),
-    schedule="0/5 * * * *", # Runs every 5 minutes
+    schedule="0 */2 * * *",  # Runs every 2 hours
     catchup=False,
     default_args=default_args,
     description="Pipeline de ETL para dados de criptomoedas",
