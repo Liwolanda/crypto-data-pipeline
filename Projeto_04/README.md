@@ -134,3 +134,21 @@ O pipeline realiza:
 - Processamento analítico com Pandas
 - Persistência em PostgreSQL
 - Orquestração e monitoramento via Apache Airflow
+
+## Screenshots
+
+### Airflow DAG
+
+![Airflow DAG](images/airflow-dag.png)
+
+### Pipeline Execution
+
+![Airflow Runs](images/airflow-runs.png)
+
+### PostgreSQL
+
+![PostgreSQL](images/postgres-table.png)
+
+### Project Structure
+
+![Project Structure](images/project-structure.png)
