@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+
+# Airflow
+logs/
+
+# Dados gerados
+data/raw/*
+!data/raw/.gitkeep
+
+data/interim/*
+!data/interim/.gitkeep
+
+data/processed/*
+!data/processed/.gitkeep
+
+# VSCode
+.vscode/
+
+# Ambiente
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Sistema
+.DS_Store
+Thumbs.db
