@@ -20,3 +20,4 @@ data/gold/
 # Sistema
 .DS_Store
 Thumbs.db
+*.tar
