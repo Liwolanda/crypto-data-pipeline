@@ -1,0 +1,9 @@
+.venv/
+.git/
+__pycache__/
+*.pyc
+.vscode/
+.env
+data/bronze/
+data/silver/
+data/gold/

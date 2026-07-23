@@ -1,0 +1,8 @@
+services:
+  spark-pipeline:
+    build: .
+    volumes:
+      - ./src:/app/src
+      - ./data:/app/data
+    working_dir: /app/src
+    command: python main.py
