@@ -1,0 +1,22 @@
+# Ambiente virtual
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Dados grandes de origem
+data/raw/
+
+# Dados gerados pelo pipeline
+data/bronze/
+data/silver/
+data/gold/
+
+# VS Code e segredos
+.vscode/
+.env
+
+# Sistema
+.DS_Store
+Thumbs.db
