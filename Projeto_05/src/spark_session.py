@@ -6,16 +6,18 @@ from pyspark.sql import SparkSession
 # ----- .\.venv\Scripts\Activate.ps1
 # ----- para sair deactivate
 
-    
-from pyspark.sql import SparkSession
 
 
-def create_spark_session():
+
+
+
+def create_spark_session() -> SparkSession:
     spark = (
-        SparkSession
-        .builder
+        SparkSession.builder
         .appName("Projeto_05_Sales_Analytics")
-        .master("local[*]")
+        .master("local[2]")
+        .config("spark.sql.shuffle.partitions", "8")
+        .config("spark.default.parallelism", "4")
         .getOrCreate()
     )
 

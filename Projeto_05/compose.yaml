@@ -5,4 +5,12 @@ services:
       - ./src:/app/src
       - ./data:/app/data
     working_dir: /app/src
-    command: python main.py
+    command:
+      - spark-submit
+      - --master
+      - local[2]
+      - --driver-memory
+      - 4g
+      - --conf
+      - spark.sql.shuffle.partitions=8
+      - main.py

@@ -3,7 +3,6 @@ import logging
 from pyspark.sql import DataFrame, SparkSession
 
 
-# Chave principal de cada tabela
 PRIMARY_KEYS = {
     "branches": ["branch_id"],
     "categories": ["itemid"],
@@ -26,8 +25,10 @@ def read_bronze(
     return bronze_df
 
 
-def standardize_column_names(df: DataFrame) -> DataFrame:
-    """Padroniza os nomes das colunas para minúsculas e snake_case."""
+def standardize_column_names(
+    df: DataFrame
+) -> DataFrame:
+    """Padroniza nomes das colunas para minúsculas e snake_case."""
 
     standardized_names = [
         column_name
@@ -46,7 +47,7 @@ def remove_duplicates(
     df: DataFrame,
     primary_keys: list[str]
 ) -> DataFrame:
-    """Remove registros duplicados considerando a chave da tabela."""
+    """Remove registros duplicados usando as chaves da tabela."""
 
     deduplicated_df = df.dropDuplicates(primary_keys)
 
@@ -57,7 +58,7 @@ def remove_null_primary_keys(
     df: DataFrame,
     primary_keys: list[str]
 ) -> DataFrame:
-    """Remove somente registros cuja chave principal esteja nula."""
+    """Remove registros cuja chave principal esteja nula."""
 
     valid_df = df.dropna(subset=primary_keys)
 
@@ -87,18 +88,18 @@ def process_silver(
     bronze_path: str,
     silver_path: str
 ) -> DataFrame:
-    """Orquestra as transformações da camada Silver."""
+    """Orquestra todas as etapas da camada Silver."""
 
     try:
         primary_keys = PRIMARY_KEYS[table_name]
 
-        silver_df = read_bronze(
+        bronze_df = read_bronze(
             spark,
             bronze_path
         )
 
         silver_df = standardize_column_names(
-            silver_df
+            bronze_df
         )
 
         silver_df = remove_duplicates(
@@ -117,6 +118,12 @@ def process_silver(
         )
 
         return silver_df
+
+    except KeyError:
+        logging.exception(
+            f"Não existe chave configurada para a tabela: {table_name}"
+        )
+        raise
 
     except Exception:
         logging.exception(
