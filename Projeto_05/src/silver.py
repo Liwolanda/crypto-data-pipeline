@@ -146,7 +146,7 @@ def transform_branches(
     transformed_df = df.withColumn(
         "lat",
         F.col("lat").cast("double") / 100000000
-    ).withColum(
+    ).withColumn("lon",
         F.col("lon").cast("double") / 100000000
     )
     return transformed_df
@@ -167,7 +167,7 @@ def apply_table_rules(
     if table_name == "birthdate":
         return transform_customers(df)
 
-    if table_name == "branch_id"
+    if table_name == "branches":
         return transform_branches(df) 
 
     return df
