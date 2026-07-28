@@ -25,3 +25,4 @@ src/test_orders.py
 .DS_Store
 Thumbs.db
 *.tar
+src/teste.py
