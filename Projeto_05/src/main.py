@@ -4,6 +4,7 @@ from bronze import save_bronze
 from inspect_data import inspect_dataframe
 from reader import read
 from silver import process_silver
+from gold import process_gold
 from spark_session import create_spark_session
 
 
@@ -107,8 +108,25 @@ def main() -> None:
 
             logging.info(f"Tabela finalizada: {name}")
 
+        orders_silver_path = "../data/silver/orders"
+
+        order_details_silver_path = (
+                "../data/silver/order_details"
+            )
+
+        gold_sales_path = "../data/gold/gold_sales"
+
+        gold_df = process_gold(
+            spark=spark,
+            orders_silver_path=orders_silver_path,
+            order_details_silver_path=order_details_silver_path,
+            gold_path=gold_sales_path
+        )
+
+        logging.info(f"{gold_df} criada com sucesso")
+
         logging.info(
-            "Pipeline Bronze e Silver executado com sucesso."
+            "Pipeline Bronze, Silver e Gold  executado com sucesso."
         )
 
     except Exception:
