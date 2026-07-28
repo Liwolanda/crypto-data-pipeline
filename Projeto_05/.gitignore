@@ -15,7 +15,7 @@ data/gold/
 
 # Teste gerados, para ver as colunas
 
-src/test_orders
+src/test_orders.py
 
 # VS Code e segredos
 .vscode/
